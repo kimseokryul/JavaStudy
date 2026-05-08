@@ -27,10 +27,20 @@ public class MemberInfo {
 
             List<Member> list = new ArrayList<>();
 
+            /*
+             * while (rs.next()) {
+             * list.add(new Member(rs.getString("userid"),
+             * rs.getString("username"),
+             * rs.getInt("age")));
+             * }
+             */
+
             while (rs.next()) {
-                list.add(new Member(rs.getString("userid"),
-                        rs.getString("username"),
-                        rs.getInt("age")));
+                list.add(new Member.Builder()
+                        .userid(rs.getString("userid"))
+                        .username(rs.getString("username"))
+                        .age(rs.getInt("age"))
+                        .build());
             }
 
             for (Member member : list) {

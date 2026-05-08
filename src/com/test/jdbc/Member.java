@@ -28,4 +28,30 @@ public class Member {
         return this.age;
     }
 
+    static class Builder {
+        private String userid;
+        private String username;
+        private int age;
+
+        public Builder userid(String userid){
+            this.userid = userid;
+            return this;
+        }
+
+        public Builder username(String username){
+            this.username = username;
+            return this;
+        }
+
+        public Builder age(int age){
+            this.age = age;
+            return this;
+        }
+
+        public Member build(){
+            if(userid == null || username == null || age == 0)
+                throw new IllegalStateException("Cannot create Member");
+            return new Member(userid, username, age);
+        }
+    }
 }
